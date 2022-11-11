@@ -47,20 +47,32 @@
                         <div class="col">
                              <div class="form-group mb-4">
                                 <label>Email address</label>
-                                <input type="email" class="form-control" placeholder="Enter Email" name="email" value="{{user.email}}">
+                                <input readonly type="email" class="form-control" placeholder="Enter Email" name="email" value="{{user.email}}">
                              </div>
                         </div>
                         <div class="col">
                             <div class="form-group mb-4">
                                <label>Username</label>
-                               <input type="text" class="form-control" placeholder="Enter Username" name="username" value="{{user.username}}">
+                               <input readonly type="text" class="form-control disabled" placeholder="Enter Username" name="username" value="{{user.username}}">
                             </div>
                         </div>
+                      <div class="w-100"></div>
+                      <div class="col-12"><br></div>
                       <div class="col-12">
                             <div class="form-group mb-4">
-                               <label>Password</label>
-                               <input type="password" class="form-control" placeholder="Fill Only If You Want To Change Password" name="password">
+                                <label><h4>Change Password</h4></label>
                             </div>
+                        </div>
+                      <div class="col">
+                            <div class="form-group mb-4">
+                               <label>Password</label>
+                               <input type="password" class="form-control" placeholder="Fill only if you want to change password" name="password">
+                            </div>
+                        </div>
+                      <div class="col">
+                          <div class="form-group mb-4">
+                              <label>Repeat Password</label>
+                              <input type="password" class="form-control" placeholder="Make sure your password is correct" name="repassword"></div>
                         </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Update Profile </button>

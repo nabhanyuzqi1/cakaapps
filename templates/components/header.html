@@ -97,7 +97,7 @@
                      {% if user.is_authenticated and user.first_name == '' %}
                      <li class="nav-item dropdown border-0 px-1 px-md-3">
                          <a class="nav-link dropdown-toggle" id="user" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                           Welcome , {{user.username}}
+                           Welcome, {{user.username}}
                         </a>
 
                         <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="user">
@@ -121,7 +121,7 @@
                     {% elif user.is_authenticated %}
                      <li class="nav-item dropdown border-0 px-1 px-md-3">
                          <a class="nav-link dropdown-toggle" id="user" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                           Welcome , {{user.first_name}}&nbsp;{{user.last_name}}
+                           Welcome, {{user.first_name}}&nbsp;{{user.last_name}}
                         </a>
 
                         <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="user">

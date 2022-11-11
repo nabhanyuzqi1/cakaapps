@@ -62,6 +62,7 @@ def PROFILE_UPDATE(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        repassword = request.POST.get('repassword')
         user_id = request.user.id
 
         user = User.objects.get(id=user_id)
@@ -71,12 +72,17 @@ def PROFILE_UPDATE(request):
         user.email = email
 
         print("====================================\n"
-              , username, first_name, last_name, email, password, user_id,
+              , username, first_name, last_name, email, password, user_id,repassword,
               "\n===================================")
 
         if password != None and password != "":
-            user.set_password(password)
+            if password == repassword:
+                user.set_password(password)
+                messages.success(request, 'Password Successfully changed. ')
+            else:
+                messages.warning(request, 'Password failed to change or does not same. ')
+                return redirect('profile')
         user.save()
-        messages.success(request, 'Profile Are Successfully Updated. ')
+        messages.success(request, 'Profile are successfully updated. ')
 
         return redirect('profile')
