@@ -10,6 +10,10 @@ class Categories(models.Model):
         return self.name
 
     def get_all_category(self):
+        """
+
+        :rtype: object
+        """
         return Categories.objects.all().order_by('id')
 
 
@@ -21,6 +25,18 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+
+class Level(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Course(models.Model):
     STATUS = (
@@ -34,6 +50,8 @@ class Course(models.Model):
     created_at = models.DateField(auto_now_add=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    level = models.ForeignKey(Level, on_delete=models.CASCADE, null=True)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, null=True)
     description = models.TextField()
     price = models.IntegerField(null=True, default=0)
     discount = models.IntegerField(null=True)

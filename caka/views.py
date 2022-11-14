@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from caka.models import Categories, Course
+from caka.models import Categories, Course, Level
 
 
 def BASE(request):
@@ -23,8 +23,12 @@ def SINGLE_COURSE(request):
 
 def LIST_COURSE(request):
     category = Categories.get_all_category(Categories)
+    level = Level.objects.all()
+    course = Course.objects.all()
     context = {
         'category': category,
+        'level': level,
+        'course': course,
     }
 
     return render(request, 'Main/list_course.html', context)
