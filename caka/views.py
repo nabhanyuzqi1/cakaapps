@@ -76,3 +76,14 @@ def ABOUT_US(request):
 
 def CUSTOM_LOGIN(request):
     return render(request, 'registration/custom/login_custom.html')
+
+
+def SEARCH_COURSE(request):
+    query = request.GET['query']
+    course = Course.objects.filter(title__icontains=query)
+    print(course)
+
+    context = {
+        'course': course
+    }
+    return render(request, 'search/search.html',context)
