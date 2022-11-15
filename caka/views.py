@@ -84,6 +84,7 @@ def SEARCH_COURSE(request):
     print(course)
 
     context = {
-        'course': course
+        'course': course,
+        'query': query
     }
     return render(request, 'search/search.html',context)
