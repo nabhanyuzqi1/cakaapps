@@ -452,11 +452,16 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="col-auto px-2 text-right">
-                                                 <del class="font-size-sm">Rp. {{i.price}}</del>
-                                                 <ins class="h4 mb-0 d-block mb-lg-n1">{% discount_calculation i.price i.discount %}</ins>
-                                            </div>
-
+                                            {% if i.price == 0 %}
+                                                <div class="col-auto px-2 text-right">
+                                                    <ins class="h4 mb-0 d-block mb-lg-n1"><a class="badge badge-primary">Free</a></ins>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-auto px-2 text-right">
+                                                    <del class="font-size-sm">Rp. {{ i.discount }}</del>
+                                                    <ins class="h4 mb-0 d-block mb-lg-n1">{% discount_calculation i.price i.discount %}</ins>
+                                                </div>
+                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -564,10 +569,16 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="col-auto px-2 text-right">
-                                                <del class="font-size-sm">₹ 959</del>
-                                                <ins class="h4 mb-0 d-block mb-lg-n1">₹ {{i.price}}</ins>
-                                            </div>
+                                            {% if i.price == 0 %}
+                                                <div class="col-auto px-2 text-right">
+                                                    <ins class="h4 mb-0 d-block mb-lg-n1"><a class="badge badge-primary">Free</a></ins>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-auto px-2 text-right">
+                                                    <del class="font-size-sm">Rp. {{ i.discount }}</del>
+                                                    <ins class="h4 mb-0 d-block mb-lg-n1">{% discount_calculation i.price i.discount %}</ins>
+                                                </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>
