@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}{{ course.title }}{% endblock %}
 {% block content %}
 
 
@@ -19,7 +20,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item text-gray-800 active" aria-current="page">
-                    Courses Single
+                    {{ course.title }}
                 </li>
             </ol>
         </nav>
@@ -31,7 +32,7 @@
         <div class="row mb-8">
             <div class="col-lg-8 mb-6 mb-lg-0 position-relative">
                 <h1 class="me-xl-14">
-                    Learn Figma: User Interface Design Essentials - UI/UX Design
+                    {{ course.title }}
                 </h1>
                 <p class="me-xl-13 mb-5">Master Figma app to get a job in UI Design, User Interface, User Experience design, Web Design & UX design.</p>
 

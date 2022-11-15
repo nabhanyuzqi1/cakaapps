@@ -39,7 +39,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}?{% now 'U' %}">
 
-    <title>Cakrawala Akademi - Asah Potensi Menjadi Kompetensi</title>
+    <title>Cakrawala Akademi - {% block title %}{% endblock %}</title>
     <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'assets/libs/lottieplayer/lottie-player.js' %}"></script>
     <script src="{% static 'assets/libs/fontawesome/js/all.js' %}"></script>
