@@ -17,7 +17,7 @@ def BASE(request):
 def HOME(request):
     category = Categories.objects.all().order_by('id')[0:5]
     course = Course.objects.filter(status='PUBLISH').order_by('-id')
-    print(course)
+
     context = {
         'category': category,
         'course': course,
@@ -45,7 +45,7 @@ def filter_data(request):
     categories = request.GET.getlist('category[]')
     level = request.GET.getlist('level[]')
     price = request.GET.getlist('price[]')
-    print(price)
+
 
     if price == ['pricefree']:
         course = Course.objects.filter(price=0)
@@ -95,7 +95,7 @@ def SEARCH_COURSE(request):
     category = Categories.get_all_category(Categories)
     query = request.GET['query']
     course = Course.objects.filter(title__icontains=query)
-    print(course)
+
 
     context = {
         'category': category,
