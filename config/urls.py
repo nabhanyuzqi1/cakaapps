@@ -10,12 +10,13 @@ urlpatterns = [
 
                   path('base', views.BASE, name='base'),
                   path('', views.HOME, name='home'),
+                  path('404', views.PAGE_NOT_FOUND, name='404'),
 
                   path('contact', views.CONTACT_US, name='contact_us'),
                   path('about', views.ABOUT_US, name='about_us'),
-                  path('course/single', views.SINGLE_COURSE, name='single_course'),
                   path('courses', views.LIST_COURSE, name='list_course'),
-                  path('courses/filter-data', views.filter_data,name="filter-data"),
+                  path('courses/filter-data', views.filter_data,name='filter-data'),
+                  path('course/<slug:slug>', views.COURSE_DETAILS, name='course_details'),
                   path('search', views.SEARCH_COURSE, name="search_course"),
 
                   path('accounts/', include('django.contrib.auth.urls')),
@@ -27,4 +28,5 @@ urlpatterns = [
 
                   # custom pages
                   path('customLogin', views.CUSTOM_LOGIN, name='customLogin'),
+                  path('webcheck', views.WEB_CHECK, name='webCheck'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
