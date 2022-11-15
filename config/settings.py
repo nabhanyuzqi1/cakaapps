@@ -129,7 +129,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'nabhan.caka@gmail.com'
 EMAIL_HOST_PASSWORD = 'dbuozseoioliwqzy'
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://cakrawalaakademi.herokuapp.com', 'https://cakrawalaakademi.com']
 
 import django_heroku
 django_heroku.settings(locals())
