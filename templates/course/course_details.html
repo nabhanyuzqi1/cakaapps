@@ -95,7 +95,7 @@
                             <a class="nav-link" id="pills-curriculum-tab" data-bs-toggle="pill" href="#pills-curriculum" role="tab" aria-controls="pills-curriculum" aria-selected="false">Curriculum</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-instructor-tab" data-bs-toggle="pill" href="#pills-instructor" role="tab" aria-controls="pills-instructor" aria-selected="false">Curriculum</a>
+                            <a class="nav-link" id="pills-instructor-tab" data-bs-toggle="pill" href="#pills-instructor" role="tab" aria-controls="pills-instructor" aria-selected="false">Intructor</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill" href="#pills-reviews" role="tab" aria-controls="pills-reviews" aria-selected="false">Reviews</a>
@@ -151,10 +151,12 @@
 
                     <div class="tab-pane fade" id="pills-curriculum" role="tabpanel" aria-labelledby="pills-curriculum-tab">
                         <div id="accordionCurriculum">
-                            <div class="border rounded shadow mb-6 overflow-hidden">
+
+                            {% for lesson in course.lesson_set.all %}
+                                <div class="border rounded shadow mb-6 overflow-hidden">
                                 <div class="d-flex align-items-center" id="curriculumheadingOne">
                                     <h5 class="mb-0 w-100">
-                                        <button class="d-flex align-items-center p-5 min-height-80 text-dark fw-medium collapse-accordion-toggle line-height-one" type="button" data-bs-toggle="collapse" data-bs-target="#CurriculumcollapseOne" aria-expanded="true" aria-controls="CurriculumcollapseOne">
+                                        <button class="d-flex align-items-center p-5 min-height-80 text-dark fw-medium collapse-accordion-toggle line-height-one" type="button" data-bs-toggle="collapse" data-bs-target="#id{{lesson.id}}" aria-expanded="true" aria-controls="CurriculumcollapseOne">
                                             <span class="me-4 text-dark d-flex">
                                                 <!-- Icon -->
                                                 <svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,33 +170,26 @@
 
                                             </span>
 
-                                            Introduction
+                                            {{ lesson.name }}
                                         </button>
                                     </h5>
                                 </div>
 
-                                <div id="CurriculumcollapseOne" class="collapse show" aria-labelledby="curriculumheadingOne" data-parent="#accordionCurriculum">
+                            {% for video in lesson.video_set.all %}
+                                <div id="{{ video.lesson.id }}" class="collapse show" aria-labelledby="curriculumheadingOne" data-parent="#accordionCurriculum">
                                     <div class="border-top px-5 py-4 min-height-70 d-md-flex align-items-center">
                                         <div class="d-flex align-items-center me-auto mb-4 mb-md-0">
                                             <div class="text-secondary d-flex">
-                                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12.5717 0H4.16956C4.05379 0.00594643 3.94322 0.0496071 3.85456 0.124286L0.413131 3.57857C0.328167 3.65957 0.280113 3.77191 0.280274 3.88929V16.8514C0.281452 17.4853 0.794988 17.9988 1.42885 18H12.5717C13.1981 17.9989 13.7086 17.497 13.7203 16.8707V1.14857C13.7191 0.514714 13.2056 0.00117857 12.5717 0ZM8.18099 0.857143H10.6988V4.87714L9.80527 3.45214C9.76906 3.39182 9.71859 3.3413 9.65827 3.30514C9.45529 3.18337 9.19204 3.24916 9.07027 3.45214L8.18099 4.87071V0.857143ZM3.7367 1.46786V2.66143C3.73552 3.10002 3.38029 3.45525 2.9417 3.45643H1.74813L3.7367 1.46786ZM12.8546 16.86C12.8534 17.0157 12.7274 17.1417 12.5717 17.1429H1.42885C1.42665 17.1429 1.42445 17.143 1.42226 17.143C1.26486 17.1441 1.13635 17.0174 1.13527 16.86V4.32214H2.9417C3.85793 4.31979 4.60006 3.57766 4.60242 2.66143V0.857143H7.31527V5.23286C7.31345 5.42593 7.37688 5.61391 7.49527 5.76643C7.67533 5.99539 7.98036 6.08561 8.25599 5.99143L8.28813 5.98071C8.49272 5.89484 8.66356 5.7443 8.77456 5.55214L9.44099 4.48071L10.1074 5.55214C10.2184 5.7443 10.3893 5.89484 10.5938 5.98071C10.8764 6.0922 11.1987 6.00509 11.3867 5.76643C11.5051 5.61391 11.5685 5.42593 11.5667 5.23286V0.857143H12.5717C12.7266 0.858268 12.8523 0.982982 12.8546 1.13786V16.86Z" fill="currentColor"/>
-                                                    <path d="M10.7761 14.3143H3.22252C2.98584 14.3143 2.79395 14.5062 2.79395 14.7429C2.79395 14.9796 2.98584 15.1715 3.22252 15.1715H10.7761C11.0128 15.1715 11.2047 14.9796 11.2047 14.7429C11.2047 14.5062 11.0128 14.3143 10.7761 14.3143Z" fill="currentColor"/>
-                                                    <path d="M10.7761 12.2035H3.22252C2.98584 12.2035 2.79395 12.3954 2.79395 12.6321C2.79395 12.8687 2.98584 13.0606 3.22252 13.0606H10.7761C11.0128 13.0606 11.2047 12.8687 11.2047 12.6321C11.2047 12.3954 11.0128 12.2035 10.7761 12.2035Z" fill="currentColor"/>
-                                                    <path d="M10.7761 10.0928H3.22252C2.98584 10.0928 2.79395 10.2847 2.79395 10.5213C2.79395 10.758 2.98584 10.9499 3.22252 10.9499H10.7761C11.0128 10.9499 11.2047 10.758 11.2047 10.5213C11.2047 10.2847 11.0128 10.0928 10.7761 10.0928Z" fill="currentColor"/>
-                                                    <path d="M10.7761 7.98218H3.22252C2.98584 7.98218 2.79395 8.17407 2.79395 8.41075C2.79395 8.64743 2.98584 8.83932 3.22252 8.83932H10.7761C11.0128 8.83932 11.2047 8.64743 11.2047 8.41075C11.2047 8.17407 11.0128 7.98218 10.7761 7.98218Z" fill="currentColor"/>
-                                                </svg>
-
+                                                <i class="fa-brands fa-youtube" aria-hidden="true" style="color: red;"></i>
                                             </div>
 
                                             <div class="ms-4">
-                                                Introduction to the course
+                                                {{video.title}}
                                             </div>
                                         </div>
 
                                         <div class="d-flex align-items-center overflow-auto overflow-md-visible flex-shrink-all">
-                                            <div class="badge text-dark-70 bg-orange-40 me-5 font-size-sm fw-normal py-2">3 question</div>
-                                            <div class="badge btn-blue-soft me-5 font-size-sm fw-normal py-2">30 min</div>
+                                            <div class="badge btn-blue-soft me-5 font-size-sm fw-normal py-2">{{ video.time_duration }} min</div>
                                             <a href="#" class="text-secondary d-flex">
                                                 <!-- Icon -->
                                                 <svg width="14" height="16" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg">
@@ -205,7 +200,10 @@
                                         </div>
                                     </div>
                                 </div>
+                            {% endfor %}
+
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -215,12 +213,12 @@
                         <div class="d-flex align-items-center mb-6">
                             <div class="d-inline-block rounded-circle border me-6 p-2">
                                 <div class="avatar avatar-size-120">
-                                    <img src="{% static 'assets/img/avatars/avatar-2.jpg' %}" alt="..." class="avatar-img rounded-circle">
+                                    <img src="/{{ course.author.author_profile }}" alt="..." class="avatar-img rounded-circle">
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h4 class="mb-0">Lauren Handerson</h4>
-                                <span>iOS Developer & UI Designer</span>
+                                <h4 class="mb-0">{{ course.author.name }}</h4>
+                                <span>{{ course.author.author_title }}</span>
                             </div>
                         </div>
 
@@ -277,8 +275,7 @@
                             </div>
                         </div>
 
-                        <p class="mb-6 line-height-md">I am a UI/UX designer and an iOS developer with having almost six years of experience in application development and also ten years of graphic design and User Interface design.</p>
-                        <p class="mb-6 line-height-md">My passion is helping people to learn new skills in a short-term course and achieve their goals. I've been designing for more than ten years and developing iOS apps for four years. It's my honor if I could help you learn to program in a simple word. I currently am teaching iOS 13, Swift 5, ARKit 3, Sketch 5, Illustrator, Photoshop, Cinema 4D, HTML, CSS, JavaScript, etc.</p>
+                        <p class="mb-6 line-height-md">{{ course.author.about_author }}</p>
                     </div>
 
                     <div class="tab-pane fade" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
@@ -506,7 +503,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Duration</h6>
-                                <span>43 weeks</span>
+                                <span>{{ time_duration.sum }} mins</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -517,7 +514,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Lectures</h6>
-                                <span>32</span>
+                                <span>{{ course.video_set.all.count }} </span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -541,7 +538,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Language</h6>
-                                <span>English</span>
+                                <span>{{ course.language }}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -554,7 +551,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Skill level</h6>
-                                <span>beginner</span>
+                                <span>{{ course.level }}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -571,7 +568,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Deadline</h6>
-                                <span>06 April 2020</span>
+                                <span>{{ course.deadline }}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -583,10 +580,10 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Certificate</h6>
-                                <span>Yes</span>
+                                <span>{{ course.certificate }}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-4">
-                                <a href="course-single-v5.html" class="mx-auto text-teal fw-medium d-flex align-items-center mt-2">
+                                <a href="" class="mx-auto text-teal fw-medium d-flex align-items-center mt-2">
                                     <!-- Icon -->
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.0283 6.25C14.3059 6.25 12.9033 4.84833 12.9033 3.125C12.9033 1.40167 14.3059 0 16.0283 0C17.7509 0 19.1533 1.40167 19.1533 3.125C19.1533 4.84833 17.7509 6.25 16.0283 6.25ZM16.0283 1.25C14.995 1.25 14.1533 2.09076 14.1533 3.125C14.1533 4.15924 14.995 5 16.0283 5C17.0616 5 17.9033 4.15924 17.9033 3.125C17.9033 2.09076 17.0616 1.25 16.0283 1.25Z" fill="currentColor"/>

@@ -19,11 +19,11 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;family=Lora:wght@400;700&amp;family=Montserrat:wght@400;500;600;700&amp;family=Nunito:wght@400;700&amp;display=swap" rel="stylesheet">
 
     <!-- Libs CSS -->
-    <link rel="stylesheet" href="{% static 'assets/libs/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/fontawesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/libs/aos/dist/aos.css' %}">
     <link rel="stylesheet" href="{% static 'assets/libs/choices.js/public/assets/styles/choices.min.css' %}">
@@ -38,8 +38,6 @@
 
     <title>Cakrawala Akademi - {% block title %}{% endblock %}</title>
     <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'assets/libs/lottieplayer/lottieplayer.js' %}"></script>
-    <script src="{% static 'assets/libs/fontawesome/js/fontawesome.js' %}"></script>
 </head>
 <body class="bg-white">
 
@@ -63,6 +61,9 @@
     <!-- Libs JS -->
 
 
+
+    <script src="{% static 'assets/libs/lottieplayer/lottieplayer.js' %}"></script>
+    <script src="{% static 'assets/libs/fontawesome/js/all.min.js' %}"></script>
     <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
     <script src="{% static 'assets/libs/aos/dist/aos.js' %}"></script>
