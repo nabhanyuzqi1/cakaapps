@@ -10,8 +10,12 @@ class Requirements_TabularInline(admin.TabularInline):
 
 class who_is_this_course_For_TabularInline(admin.TabularInline):
     model = Who_is_this_course_for
+
+class Video_TabularInline(admin.TabularInline):
+    model = Video
+
 class course_admin(admin.ModelAdmin):
-    inlines = (what_you_learn_TabularInline, Requirements_TabularInline, who_is_this_course_For_TabularInline)
+    inlines = (what_you_learn_TabularInline, Requirements_TabularInline, who_is_this_course_For_TabularInline, Video_TabularInline)
 
 
 admin.site.register(Categories)
@@ -22,5 +26,6 @@ admin.site.register(Tag)
 admin.site.register(What_you_learn)
 admin.site.register(Requirements)
 admin.site.register(Who_is_this_course_for)
-
+admin.site.register(Lesson)
+admin.site.register(Video)
 

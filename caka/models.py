@@ -101,3 +101,19 @@ class Who_is_this_course_for(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     points = models.CharField(max_length=500)
 
+class Lesson (models.Model) :
+    course = models.ForeignKey (Course,on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    def __str__ (self):
+        return self.name + " - " + self.course.title
+class Video (models .Model):
+    serial_number = models. IntegerField(null=True)
+    thumbnail = models. ImageField(upload_to="Media/Yt_Thumbnail",null=True)
+    course = models. ForeignKey (Course, on_delete=models . CASCADE)
+    lesson = models. ForeignKey (Lesson, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    youtube_id = models.CharField(max_length=200)
+    time_duration = models. FloatField(null=True)
+    preview = models.BooleanField(default=False)
+    def __str__ (self):
+        return self.title
