@@ -21,6 +21,7 @@ class course_admin(admin.ModelAdmin):
 admin.site.register(Categories)
 admin.site.register(Author)
 admin.site.register(Course, course_admin)
+admin.site.register(Language)
 admin.site.register(Level)
 admin.site.register(Tag)
 admin.site.register(What_you_learn)

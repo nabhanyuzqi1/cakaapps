@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from caka.models import Categories, Course, Level
+from caka.models import Categories, Course, Level, Video
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from django.db.models import Sum
 
 
 def BASE(request):
@@ -107,6 +108,7 @@ def SEARCH_COURSE(request):
 
 def COURSE_DETAILS(request, slug):
     category = Categories.get_all_category(Categories)
+    time_duration = Video.objects.filter(course__slug=slug).aggregate(sum=Sum('time_duration'))
     course = Course.objects.filter(slug = slug)
     if course.exists():
         course = course.first()
@@ -116,6 +118,7 @@ def COURSE_DETAILS(request, slug):
     context = {
         'category': category,
         'course': course,
+        'time_duration': time_duration,
     }
     return render(request, 'course/course_details.html', context)
 

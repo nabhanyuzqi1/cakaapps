@@ -21,7 +21,9 @@ class Categories(models.Model):
 class Author(models.Model):
     author_profile = models.ImageField(upload_to="Media/author")
     name = models.CharField(max_length=100, null=True)
+    author_title = models.CharField(max_length=50, null=True)
     about_author = models.TextField()
+
 
     def __str__(self):
         return self.name
@@ -32,6 +34,12 @@ class Level(models.Model):
 
     def __str__(self):
         return self.name
+
+class Language(models.Model):
+    language = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.language
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
@@ -56,8 +64,11 @@ class Course(models.Model):
     description = models.TextField()
     price = models.IntegerField(null=True, default=0)
     discount = models.IntegerField(null=True)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+    deadline = models.CharField(max_length=100, null=True)
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
     status = models.CharField(choices=STATUS, max_length=100, null=True)
+    certificate = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.title
@@ -107,13 +118,13 @@ class Lesson (models.Model) :
     def __str__ (self):
         return self.name + " - " + self.course.title
 class Video (models .Model):
-    serial_number = models. IntegerField(null=True)
-    thumbnail = models. ImageField(upload_to="Media/Yt_Thumbnail",null=True)
-    course = models. ForeignKey (Course, on_delete=models . CASCADE)
-    lesson = models. ForeignKey (Lesson, on_delete=models.CASCADE)
+    serial_number = models.IntegerField(null=True)
+    thumbnail = models.ImageField(upload_to="Media/Yt_Thumbnail",null=True)
+    course = models.ForeignKey (Course, on_delete=models . CASCADE)
+    lesson = models.ForeignKey (Lesson, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     youtube_id = models.CharField(max_length=200)
-    time_duration = models. FloatField(null=True)
+    time_duration = models.IntegerField(null=True)
     preview = models.BooleanField(default=False)
     def __str__ (self):
         return self.title
