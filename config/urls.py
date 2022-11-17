@@ -26,6 +26,8 @@ urlpatterns = [
                   path('accounts/profile', userlogin.PROFILE, name='profile'),
                   path('accounts/profile/update', userlogin.PROFILE_UPDATE, name='profile_update'),
 
+                  path('checkout/<slug:slug>', views.CHECKOUT, name='checkout'),
+
                   # custom pages
                   path('customLogin', views.CUSTOM_LOGIN, name='customLogin'),
                   path('webcheck', views.WEB_CHECK, name='webCheck'),

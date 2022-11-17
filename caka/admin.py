@@ -29,4 +29,7 @@ admin.site.register(Requirements)
 admin.site.register(Who_is_this_course_for)
 admin.site.register(Lesson)
 admin.site.register(Video)
+admin.site.register(Course_type)
+
+admin.site.register(UserCourse)
 

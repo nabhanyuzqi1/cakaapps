@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load course_tags %}
 {% block title %}{{ course.title }}{% endblock %}
 {% block content %}
 
@@ -469,11 +470,17 @@
                     </a>
 
                     <div class="pt-5 pb-4 px-5 px-lg-3 px-xl-5">
+                        {% if course.price == 0 %}
                         <div class="d-flex align-items-center mb-2">
-                            <ins class="h2 mb-0">Paid</ins>
-                            <del class="ms-3"></del>
-                            <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">MEMBERSHIP ONLY</div>
+                            <ins class="h2 mb-0 badge badge-primary">Free</ins>
                         </div>
+                        {% else %}
+                            <div class="d-flex align-items-center mb-2">
+                            <ins class="h2 mb-0">{% discount_calculation course.price course.discount %}</ins>
+                            <del class="ms-3">{{ course.price }}</del>
+                            <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">{{ course.course_type }}</div>
+                        </div>
+                        {% endif %}
 
                         <div class="d-flex align-items-center text-alizarin mb-6">
                             <!-- Icon -->
@@ -486,12 +493,13 @@
                                 <path d="M18.9673 1.92072C17.6194 0.573026 15.4053 0.570721 14.0318 1.91564C13.9 2.04489 13.8252 2.22142 13.8242 2.40595C13.8233 2.59052 13.8963 2.76794 14.0268 2.89833L17.9899 6.86144C18.1247 6.99648 18.3016 7.06398 18.4786 7.06398C18.6532 7.06398 18.8279 6.99831 18.9622 6.86628C19.6263 6.21628 19.9945 5.34672 19.9993 4.41789C20.0042 3.47809 19.6376 2.59122 18.9673 1.92072ZM18.4028 5.3193L15.5807 2.4972C16.3729 2.12114 17.3459 2.25458 17.9899 2.89856C18.3973 3.30594 18.6199 3.84301 18.6169 4.41102C18.6152 4.73152 18.5413 5.04051 18.4028 5.3193Z" fill="currentColor"/>
                             </svg>
 
-                            <span class="ms-2">1 day trial!</span>
+                            <span class="ms-2">{{ course.deadline }}</span>
                         </div>
-
-                        <button class="btn btn-primary btn-block mb-3" type="button" name="button">JOIN MEMBERSHIP</button>
-                        <button class="btn btn-orange btn-block mb-6" type="button" name="button">ENROLL</button>
-
+                        {% if check_enroll is None %}
+                            <a class="btn btn-primary btn-block mb-3" href="/checkout/{{ course.slug }}">ENROLL</a>
+                        {% else %}
+                            <button class="btn btn-orange btn-block mb-6" disabled>ALREADY ENROLLED</button>
+                        {% endif %}
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex align-items-center py-3">
                                 <div class="text-secondary d-flex icon-uxs">
