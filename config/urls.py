@@ -28,6 +28,8 @@ urlpatterns = [
 
                   path('checkout/<slug:slug>', views.CHECKOUT, name='checkout'),
 
+                  path('my-course', views.MY_COURSE, name='my_course'),
+
                   # custom pages
                   path('customLogin', views.CUSTOM_LOGIN, name='customLogin'),
                   path('webcheck', views.WEB_CHECK, name='webCheck'),

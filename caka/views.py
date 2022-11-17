@@ -155,3 +155,13 @@ def CHECKOUT(request, slug):
         course.save()
         return redirect('home')
     return render(request, 'checkout/checkout.html')
+
+
+def MY_COURSE(request):
+    category = Categories.get_all_category(Categories)
+    course = UserCourse.objects.filter(user=request.user)
+    context = {
+        'category': category,
+        'course': course,
+    }
+    return render(request, 'course/my-course.html', context)

@@ -88,11 +88,10 @@
                         </a>
 
                     </li>
-                    <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-grey" href="http://lsp-sdmtik.id/" target=”_blank”>
-                            LSP
+                     <li class="nav-item dropdown dropdown-full-width">
+                        <a class="nav-link text-grey" href="{% url 'my_course' %}">
+                            My Course
                         </a>
-
                     </li>
                      {% if user.is_authenticated and user.first_name == '' %}
                      <li class="nav-item dropdown border-0 px-1 px-md-3">
@@ -108,7 +107,7 @@
                             </li>
                             <li class="dropdown-item">
                                 <a class="dropdown-link" href="">
-                                    Erolled Courses
+                                    Enrolled Courses
                                 </a>
                             </li>
                             <li class="dropdown-item">
