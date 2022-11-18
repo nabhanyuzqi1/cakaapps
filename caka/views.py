@@ -3,6 +3,7 @@ from caka.models import Categories, Course, Level, Video, UserCourse
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.contrib import messages
 
 
 def BASE(request):
@@ -152,9 +153,15 @@ def CHECKOUT(request, slug):
             user = request.user,
             course = course,
         )
+        messages.success(request,'Course Are Successfully Enrolled !')
         course.save()
-        return redirect('home')
-    return render(request, 'checkout/checkout.html')
+        return redirect('my_course')
+    else:
+        pass
+    context = {
+        'course': course
+    }
+    return render(request, 'checkout/checkout.html', context)
 
 
 def MY_COURSE(request):
