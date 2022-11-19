@@ -1,10 +1,24 @@
+import datetime
+
 from django.shortcuts import redirect, render
-from caka.models import Categories, Course, Level, Video, UserCourse
+from caka.models import Categories, Course, Level, Video, UserCourse, generate_random_string, Payment
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Sum
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from time import time
+from midtransclient import *
 
+MERCHANT_ID = "G787824232"
+CLIENT_KEY = "SB-Mid-client-DWewtoL9TgDMVTHn"
+SERVER_KEY = "SB-Mid-server-YkLpYgXsx_JCscPIMq1MfrEU"
+
+snap = Snap(
+    is_production=False,
+    server_key=SERVER_KEY,
+    client_key=CLIENT_KEY
+)
 
 def BASE(request):
     category = Categories.get_all_category(Categories)
@@ -148,6 +162,10 @@ def WEB_CHECK(request):
 
 def CHECKOUT(request, slug):
     course = Course.objects.get(slug=slug)
+    action = request.GET.get('action')
+    order_id = generate_random_string(11)
+    order = None
+
     if course.price == 0:
         course = UserCourse (
             user = request.user,
@@ -156,10 +174,53 @@ def CHECKOUT(request, slug):
         messages.success(request,'Course Are Successfully Enrolled !')
         course.save()
         return redirect('my_course')
-    else:
-        pass
+
+    elif action == 'create_payment':
+        if request.method == "POST":
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            country = request.POST.get('country')
+            address_1 = request.POST.get('address_1')
+            address_2 = request.POST.get('address_2')
+            city = request.POST.get('city')
+            postcode = request.POST.get('postcode')
+            phone = request.POST.get('phone')
+            email = request.POST.get('email')
+            order_comments = request.POST.get('order_comments')
+            amount = course.price
+            currency = "IDR"
+            receipt = f"Caka-{int(time())}"
+
+
+            param = {
+                "transaction_details": {
+                    "order_id": order_id,
+                    "gross_amount": amount
+                }, "credit_card": {
+                    "secure": True
+                }
+            }
+
+            # create transaction
+            order = snap.create_transaction(param)
+            # transaction token
+            SNAP_TOKEN = order['token']
+            print('transaction_token:')
+            print(SNAP_TOKEN)
+
+            payment = Payment(
+                course = course,
+                user = request.user,
+                order_id = order_id,
+                payment_id = SNAP_TOKEN,
+            )
+            payment.save()
+            get_token = Payment.objects.get(payment_id=SNAP_TOKEN)
+
     context = {
-        'course': course
+        'course': course,
+        'order': order,
+        'SNAP_TOKEN': SNAP_TOKEN
     }
     return render(request, 'checkout/checkout.html', context)
 
@@ -172,3 +233,11 @@ def MY_COURSE(request):
         'course': course,
     }
     return render(request, 'course/my-course.html', context)
+
+@csrf_exempt
+def VERIFY_PAYMENT(request):
+    if request.method == "POST":
+        data = request.POST
+        print(data)
+        client.transactions.status()
+    return None

@@ -2,6 +2,16 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+import uuid, string, random
+from rest_framework.views import APIView
+from django.http import JsonResponse
+
+class HomeView(APIView):
+
+ def get(self, request, format=None):
+    return JsonResponse({"message":
+    'HELLO WORLD FROM DJANGO AND DOCKER'})
+
 
 # Create your models here.
 class Categories(models.Model):
@@ -87,6 +97,14 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = create_slug(instance)
 pre_save.connect(pre_save_post_receiver, Course)
 
+def generate_random_string(LENGTH):
+    """
+    Generates random ID.
+    """
+    random_string = string.digits + string.ascii_uppercase
+    new_id = ''.join([random.SystemRandom().choice(random_string) for i in range(random.randint(11, LENGTH))])
+    return new_id
+
 class What_you_learn(models.Model):
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
     points = models.CharField(max_length=500)
@@ -103,6 +121,8 @@ class Who_is_this_course_for(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     points = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.course.title + " - " + self.points
 class Lesson (models.Model) :
     course = models.ForeignKey (Course,on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -128,3 +148,15 @@ class UserCourse(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.user.first_name + " - " + self.course.title
+
+class Payment(models.Model):
+    order_id = models.CharField(max_length=100, null=True, blank= True)
+    payment_id = models.CharField(max_length=100, null=True, blank=True)
+    user_course = models.ForeignKey(UserCourse, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.first_name + " -- " + self.course.title

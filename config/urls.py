@@ -30,7 +30,14 @@ urlpatterns = [
 
                   path('my-course', views.MY_COURSE, name='my_course'),
 
+                  path('verify_payment', views.VERIFY_PAYMENT, name='verify_payment'),
+
+                  #endpoint
+
+
                   # custom pages
                   path('customLogin', views.CUSTOM_LOGIN, name='customLogin'),
                   path('webcheck', views.WEB_CHECK, name='webCheck'),
+
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

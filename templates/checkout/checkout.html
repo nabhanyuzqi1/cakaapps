@@ -131,56 +131,24 @@
                 </div>
 
                 <div id="payment" class="woocommerce-checkout-payment">
-                    <ul class="wc_payment_methods payment_methods methods">
-                        <li class="wc_payment_method payment_method_bacs">
-                            <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" data-order_button_text="">
-
-                            <label for="payment_method_bacs">Direct bank transfer </label>
-                            <div class="payment_box payment_method_bacs" style="display: block;">
-                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                            </div>
-                        </li>
-
-                        <li class="wc_payment_method payment_method_cheque">
-                            <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="cheque" data-order_button_text="">
-
-                            <label for="payment_method_cheque">Check payments </label>
-                            <div class="payment_box payment_method_cheque d-none" style="display: block;">
-                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                            </div>
-                        </li>
-
-                        <li class="wc_payment_method payment_method_cod">
-                            <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" data-order_button_text="">
-
-                            <label for="payment_method_cod">Cash on delivery </label>
-                            <div class="payment_box payment_method_cod d-none" style="display: block;">
-                                <p>Pay with cash upon delivery.</p>
-                            </div>
-                        </li>
-
-                        <li class="wc_payment_method payment_method_paypal">
-                            <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal" data-order_button_text="Proceed to PayPal">
-
-                            <label for="payment_method_paypal">PayPal
-                                <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" alt="PayPal acceptance mark">
-                                <a href="https://www.paypal.com/gb/webapps/mpp/paypal-popup" class="about_paypal">What is PayPal?</a>
-                            </label>
-
-                            <div class="payment_box payment_method_paypal d-none" style="display: block;">
-                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                            </div>
-                        </li>
-                    </ul>
                     <div class="form-row place-order">
-                        <a href="shop-order-completed.html" class="btn btn-primary btn-block">
+                        <button id="pay-button" type="submit" class="btn btn-primary btn-block">
                             PLACE ORDER
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
+
+    <script type="text/javascript">
+      var payButton = document.getElementById('pay-button');
+      payButton.addEventListener('click', function () {
+
+          snap.pay('f50bdff2-6226-4a39-b497-4febc7d028a1');
+
+      });
+    </script>
 
     {% include 'components/cta.html' %}
 {% endblock %}
