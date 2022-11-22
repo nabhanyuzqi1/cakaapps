@@ -26,6 +26,7 @@ urlpatterns = [
                   path('my-course', views.MY_COURSE, name='my_course'),
                   path('verify_payment', views.VERIFY_PAYMENT, name='verify_payment'),
                   path('logout/', userlogin.logout_view, name='logout'),
+                  path('login/', userlogin.LOGIN, name='login'),
 
                   #endpoint
 

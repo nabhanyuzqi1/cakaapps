@@ -1,7 +1,7 @@
 import datetime
 
 from django.shortcuts import redirect, render
-from caka.models import Categories, Course, Level, Video, UserCourse, generate_random_string, Payment
+from caka.models import Categories, Course, Level, Video, UserCourse, generate_random_string, Payment, Author
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Sum
@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from time import time
 from midtransclient import *
+
 
 MERCHANT_ID = "G787824232"
 CLIENT_KEY = "SB-Mid-client-DWewtoL9TgDMVTHn"
@@ -33,11 +34,13 @@ def BASE(request):
 def HOME(request):
     category = Categories.objects.all().order_by('id')[0:5]
     course = Course.objects.filter(status='PUBLISH').order_by('-id')
-
+    author = Author.objects.all()
     context = {
         'category': category,
         'course': course,
+        'author': author,
     }
+    print(context)
     return render(request, 'Main/home.html', context)
 
 def LIST_COURSE(request):

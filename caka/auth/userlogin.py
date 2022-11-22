@@ -91,3 +91,7 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+
+def LOGIN(request):
+
+    return render(request, "registration/login.html")

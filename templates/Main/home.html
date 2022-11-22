@@ -141,7 +141,7 @@
                                     </a>
 
                                     <span class="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
-                                        <span class="text-white text-uppercase fw-bold font-size-xs">MEMBERSHIP</span>
+                                        <span class="text-white text-uppercase fw-bold font-size-xs">{{ i.course_type }}</span>
                                     </span>
                                 </div>
 
@@ -466,9 +466,12 @@
             </div>
 
             <div class="mx-n3 mx-md-n4" data-flickity='{"pageDots": true, "prevNextButtons": false, "cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
-                <div class="col-12 mw-xl-20 col-md-3 text-center py-5 px-3 px-md-4">
-                    <div class="card">
+                    {% for x in author %}
+                    <div class="col-12 mw-xl-20 col-md-3 text-center py-5 px-3 px-md-4">
+
+                            <div class="card">
                         <!-- Image -->
+
                         <div class="card-zoom position-relative d-flex justify-content-center">
                             <div class="card-float card-hover center">
                                 <ul class="nav mx-n2 justify-content-center">
@@ -495,17 +498,21 @@
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="rounded-circle overflow-hidden card-hover-overlay position-relative d-block" style="max-width: 150px;"><img class="rounded-circle mx-auto shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-5.jpg' %}" alt="..."></a>
+                            <a href="instructors-single.html" class="rounded-circle overflow-hidden card-hover-overlay position-relative d-block" style="max-width: 150px;">
+                                <img class="rounded-circle mx-auto shadow-light-lg img-fluid" src="{{ x.author_profile }}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
-                        <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="instructors-single.html" class="d-block"><h5 class="mb-0">Nabhan Yuzqi</h5></a>
-                            <span class="font-size-d-sm">Developer</span>
-                        </div>
-                    </div>
-                </div>
 
+                        <div class="card-footer px-3 pt-4 pb-1">
+                            <a href="" class="d-block"><h5 class="mb-0">{{ x.name }}</h5></a>
+                            <span class="font-size-d-sm">{{ x.author_title }}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                    {% endfor %}
             </div>
         </div>
     </section>
