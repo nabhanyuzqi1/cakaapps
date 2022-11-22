@@ -93,6 +93,7 @@ AUTHENTICATION_BACKENDS = [
     'caka.auth.AuthBackend.AuthBackend',
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -119,9 +120,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'login'
-
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -129,7 +127,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'nabhan.caka@gmail.com'
 EMAIL_HOST_PASSWORD = 'dbuozseoioliwqzy'
 
-CSRF_TRUSTED_ORIGINS = ['https://cakrawalaakademi.herokuapp.com', 'https://cakrawalaakademi.com']
+CSRF_TRUSTED_ORIGINS = ['https://cakrawalaakademi.com']
 
-import django_heroku
-django_heroku.settings(locals())
+#import django_heroku
+#django_heroku.settings(locals())

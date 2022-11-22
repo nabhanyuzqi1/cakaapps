@@ -3,14 +3,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 import uuid, string, random
-from rest_framework.views import APIView
 from django.http import JsonResponse
-
-class HomeView(APIView):
-
- def get(self, request, format=None):
-    return JsonResponse({"message":
-    'HELLO WORLD FROM DJANGO AND DOCKER'})
 
 
 # Create your models here.

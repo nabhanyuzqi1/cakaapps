@@ -37249,3 +37249,9 @@ body.compensate-for-scrollbar {
 .slect-rating>input:checked+label:hover,.slect-rating>input:checked~label:hover,.slect-rating>input:checked~label:hover~label,.slect-rating>label:hover~input:checked~label {
 	color: #ffbb72;
 }
+
+
+.bg-conic{
+
+        background: conic-gradient(from 180deg at 50% 50%, #FC7C00 0deg, rgba(252, 124, 0, 0.51) 360deg);
+    }

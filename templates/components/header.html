@@ -72,7 +72,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown dropdown-full-width ">
                         <a class="nav-link px-xl-4 text-grey"  href="{% url 'home' %}">
-                            <span>Home</span>
+                            <span>Why Caka?</span>
                         </a>
 
                     </li>
@@ -83,14 +83,14 @@
 
                     </li>
                     <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-grey"  href="{% url 'contact_us' %}">
-                            Contact Us
+                        <a class="nav-link text-grey"  href="{% url 'list_course' %}">
+                            Courses
                         </a>
 
                     </li>
                      <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-grey" href="{% url 'my_course' %}">
-                            My Course
+                        <a class="nav-link text-grey" href="http://lsp-sdmtik.id" target="_blank">
+                            LSP
                         </a>
                     </li>
                      {% if user.is_authenticated and user.first_name == '' %}

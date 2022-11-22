@@ -18,18 +18,12 @@ urlpatterns = [
                   path('courses/filter-data', views.filter_data,name='filter-data'),
                   path('course/<slug:slug>', views.COURSE_DETAILS, name='course_details'),
                   path('search', views.SEARCH_COURSE, name="search_course"),
-
-                  path('accounts/', include('django.contrib.auth.urls')),
-
                   path('doLogin', userlogin.DO_LOGIN, name='doLogin'),
                   path('accounts/register', userlogin.REGISTER, name='register'),
                   path('accounts/profile', userlogin.PROFILE, name='profile'),
                   path('accounts/profile/update', userlogin.PROFILE_UPDATE, name='profile_update'),
-
                   path('checkout/<slug:slug>', views.CHECKOUT, name='checkout'),
-
                   path('my-course', views.MY_COURSE, name='my_course'),
-
                   path('verify_payment', views.VERIFY_PAYMENT, name='verify_payment'),
 
                   #endpoint
