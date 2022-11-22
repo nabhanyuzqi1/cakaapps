@@ -86,3 +86,8 @@ def PROFILE_UPDATE(request):
         messages.success(request, 'Profile are successfully updated. ')
 
         return redirect('profile')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+

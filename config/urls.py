@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from caka import views
-from caka.auth import userlogin
+from caka.auth import userlogin, AuthBackend
 from django.conf import settings
 
 urlpatterns = [
@@ -25,6 +25,7 @@ urlpatterns = [
                   path('checkout/<slug:slug>', views.CHECKOUT, name='checkout'),
                   path('my-course', views.MY_COURSE, name='my_course'),
                   path('verify_payment', views.VERIFY_PAYMENT, name='verify_payment'),
+                  path('logout/', userlogin.logout_view, name='logout'),
 
                   #endpoint
 
